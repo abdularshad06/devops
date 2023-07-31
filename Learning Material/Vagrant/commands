@@ -1,0 +1,5 @@
+# Installation
+$ vagrant plugin install vagrant-hostmanager
+
+# To update the hosts file on each active machine, run the following command: 
+$ vagrant hostmanager
