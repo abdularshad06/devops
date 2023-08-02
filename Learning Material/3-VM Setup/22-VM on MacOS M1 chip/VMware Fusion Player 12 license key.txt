@@ -1,0 +1,15 @@
+If you'r using MAC Intel CPU you want to use VMware to virtual your desired OS such Windows or Ubuntu on the MAC OS you need to download VMware Fusion Player first then it has two version Pro and Player, the Player version is free for personal use but you need to create VM account to download and licence key.
+
+You can create account to download yourself here:
+https://customerconnect.vmware.com/group/vmware/evalcenter?p=fusion-player-personal
+
+If you don't want to create account to get license, you can try below original license key for VMware Fusion Player:
+
+COMPONENT:
+VMware Fusion Player – Personal Use
+
+LICENSE KEYS:
+1J23L-DHJ9N-N81JA-00224-38471
+
+My current version is VMware Fusion 12.2.1 (for Intel-based Macs)
+
