@@ -4,3 +4,5 @@ Name - web01
 Project - tween
 Environment - Prod
 Owner - LeadDevOps
+
+choco install awscli -y
