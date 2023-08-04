@@ -6,3 +6,12 @@ Environment - Prod
 Owner - LeadDevOps
 
 choco install awscli -y
+
+
+GOTO GITBASH
+$ aws --version
+$ aws configure
+AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX
+AWS Secret Access Key [None]: XXXXXXXXXXXXXXxXXXXXXXXXXXXXXXXXXXXXXXXX
+Default region name [None]: us-east-1
+Default output format [None]: json
