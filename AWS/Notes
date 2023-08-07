@@ -5,13 +5,80 @@ Project - tween
 Environment - Prod
 Owner - LeadDevOps
 
+
 choco install awscli -y
 
 
 GOTO GITBASH
+# check version
 $ aws --version
+
+# configure cli
 $ aws configure
 AWS Access Key ID [None]: XXXXXXXXXXXXXXXXXXXX
 AWS Secret Access Key [None]: XXXXXXXXXXXXXXxXXXXXXXXXXXXXXXXXXXXXXXXX
 Default region name [None]: us-east-1
 Default output format [None]: json
+
+
+# To check id information
+$ aws sts get-caller-identity
+
+
+# To check ec2 instance informations
+$ aws ec2 describe-instances
+
+
+# Create, describe/list, delete key-pair
+$ aws ec2 create-key-pair --key-name web02-test-nvir --output text > web02-test-nvir.pem
+$ aws ec2 describe-key-pair
+$ aws ec2 describe-key-pair --key-name web02-test-nvir
+$ aws ec2 delete-key-pair --key-name web02-test-nvir
+
+
+# Create a Security Group & Adding Inbound rules
+$ aws ec2 create-security-group --group-name web02-sg-nvir --description "This Security Group Created for web02 allow only ssh-22/tcp for my ip and http-80/tcp for all"
+$ aws ec2 describe-security-groups --group-name web02-sg-nvir
+$ curl https://checkip.amazonaws.com  or curl https://ifconfig.me
+$ aws ec2 authorize-security-group-ingress --group-id <security group Id> --protocol tcp --port <port Number> --cidr <ip address>
+$ aws ec2 authorize-security-group-ingress --group-id <security grp Id>--protocol tcp --port 22-8000 --cidr 0.0.0.0/0
+
+# Delete your security group
+$ aws ec2 delete-security-group --group-name <security grp Name>
+
+# Launch Instance
+$ aws ec2 run-instances --image-id <ami-Id> --count 1 --instance-type <type> --key-name <keypair-Name> --security-groups <security grp Name>
+
+# Terminate your Instance
+$ aws ec2 terminate-instances --instance-ids <Instance-Id>
+
+
+Eample :-
+$ aws ec2 run-instances \
+    --image-id ami-053b0d53c279acc90 \
+    --instance-type t2.micro \
+    --region us-east-1 \
+    --count 1 \
+    --key-name MyKeyPair \
+    --block-device-mappings file://block-device-mappings.json \
+    --tag-specifications \
+        'ResourceType=instance,Tags=[{Key=Name,Value=web02}]' \
+        'ResourceType=volume,Tags=[{Key=Name,Value=web02-disk1}]' \
+    --security-group-ids sg-0b0384b66d7d692f9 \
+    --user-data file://my_script.txt
+
+
+Below is the content of my block-device-mappings.json
+[
+    {
+        "DeviceName": "/dev/sda1",
+        "Ebs": {
+            "VolumeSize": 8,
+            "DeleteOnTermination": true,
+            "VolumeType": "gp2"
+        }
+    }
+]
+
+
+
